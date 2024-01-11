@@ -1,0 +1,13 @@
+{
+    "name": "name",
+    "description": "description",
+    "authors": "author",
+    "version": "1.0.0",
+    "main": "pathToMain",
+    "dependencies": {
+        "jest": "^29.7.0"
+    },
+    "devDependencies": {
+        "inquirer": "^9.2.12"
+    }
+}
