@@ -19,7 +19,7 @@ const userInput = [
     type: 'list', // Change from 'input' to 'list'
     message: 'circle, triangle, and square?',
     name: 'shape',
-    choices: ['circle', 'triangle', 'square'],
+    choices: ['Triangle', 'Circle', 'Square'],
   },
   {
     type: 'input',
