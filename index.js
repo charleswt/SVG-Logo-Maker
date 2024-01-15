@@ -1,6 +1,6 @@
 const { writeFile } = require("fs");
 const inquirerPromise = import('inquirer').then((inquirer) => inquirer.default);
-const printXML = require('./lib/shapes');
+const { Circle, Square, Triangle } = require('./lib/shapes')
 
 const userInput = [
   {
@@ -16,8 +16,8 @@ const userInput = [
     validate: (input) => input.length > 0 || 'Text color is required.',
   },
   {
-    type: 'list', // Change from 'input' to 'list'
-    message: 'circle, triangle, and square?',
+    type: 'list',
+    message: 'Select a shape:',
     name: 'shape',
     choices: ['Triangle', 'Circle', 'Square'],
   },
@@ -29,8 +29,16 @@ const userInput = [
   },
 ];
 
-function writeToFile(fileName = 'output.svg', userData) {
-  writeFile(`./output/${fileName}`, printXML(userData), (err) => {
+function writeToFile(fileName = 'output.svg', userInput) {
+  const selectedShapeClass = userInput.shape === 'Circle'
+    ? Circle
+    : userInput.shape === 'Square'
+    ? Square
+    : Triangle;
+
+  const shapeInstance = new selectedShapeClass(userInput.text, userInput.textColor, userInput.shapeColor);
+
+  writeFile(`./output/${fileName}`, shapeInstance.render(), (err) => {
     if (err) {
       console.error('Error writing to file:', err);
     } else {
